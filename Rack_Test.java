@@ -20,7 +20,9 @@ public class Rack_Test extends LinearOpMode {
     public DcMotor FR_Motor = null;
 
     public Servo Rack_Servo = null;
+    public Servo Claw_Servo = null;
 
+	
     public double Rack_Pos = 0.0;
     public double Rack_inc = 0.05;
     public boolean dpad_latch_right = false;
@@ -29,12 +31,18 @@ public class Rack_Test extends LinearOpMode {
 
     @Override
     public void runOpMode() {
+
+//Wheel Motors	    
+	    
         BR_Motor = hardwareMap.get(DcMotor.class, "BR Wheel Motor");
         FL_Motor = hardwareMap.get(DcMotor.class, "FL Wheel Motor");
         BL_Motor = hardwareMap.get(DcMotor.class, "BL Wheel Motor");
         FR_Motor = hardwareMap.get(DcMotor.class, "FR Wheel Motor");
 
+//X/Y Servos
+	    
         Rack_Servo = hardwareMap.get(Servo.class, "Rack_Servo");
+	Claw_Servo = hardwareMap.get(Servo.class, "Claw_Servo");
 
 		//Drive Test
         //FL_Motor.setDirection(DcMotor.Direction.REVERSE);
