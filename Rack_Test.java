@@ -28,6 +28,11 @@ public class Rack_Test extends LinearOpMode {
     public boolean dpad_latch_right = false;
     public boolean dpad_latch_left = false;
 
+	
+    public double Claw_Pos = 0.0;
+    public double Claw_inc = 0.05;
+    public boolean right_trigger_latch_right = false;
+    public boolean right_trigger_latch_left = false;
 
     @Override
     public void runOpMode() {
@@ -100,8 +105,20 @@ public class Rack_Test extends LinearOpMode {
             }
             dpad_latch_left = gamepad1.dpad_left;
 
+	    //Claw Stuff
+	    if(!right_trigger_latch_left && gamepad1.right_trigger > 0.5 && Rack_Pos > 1.0){
+                Claw_Pos = Claw_Pos - Claw_inc;
+            }
+            right_trigger_latch_left = (gamepad1.right_trigger > 0.5);
+		
+	    if(!right_bumper_latch_left && gamepad1.right_trigger > 0.5 && Rack_Pos > 0.0){
+                Claw_Pos = Claw_Pos - Claw_inc;
+            }
+            right_trigger_left = (gamepad.right_trigger > 0.5);
+
             // Set Servo Position
             Rack_Servo.setPosition(Rack_Pos);
+            Claw_Servo.setPosition(Claw_Pos);
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
